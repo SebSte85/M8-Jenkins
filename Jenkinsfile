@@ -1,19 +1,34 @@
 pipeline {
     agent any
+
+    tools {
+        maven 'maven-3.9.1'
+    }
     stages {
-        stage('Build') {
+        stage("init") {
             steps {
-                echo 'Building..'
+                script {
+                gv = load "script.groovy"
             }
         }
-        stage('Test') {
+        stage('build jar...') {
             steps {
-                echo 'Testing..'
+                script {
+                gv.buildJar()
+                }
+                }
             }
         }
-        stage('Deploy') {
+        stage('build image...') {
             steps {
-                echo 'Deploying....'
+                script { 
+                gv.buildImage()
+                }
+            }
+        }     
+        stage('deploy...') {
+            steps {
+                gv.deployApp()
             }
         }
     }
