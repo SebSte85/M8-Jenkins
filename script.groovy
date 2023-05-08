@@ -12,7 +12,7 @@ def buildImage() {
         // sh "docker push $USER/$JOB_NAME:$BUILD_NUMBER"
         // }
         sh "aws --version"
-        sh "echo whoami"
+        sh "whoami"
         sh "aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 681800194367.dkr.ecr.eu-north-1.amazonaws.com"
         sh "docker build -t $JOB_NAME:$BUILD_NUMBER ."
         sh "docker tag $JOB_NAME:$BUILD_NUMBER 681800194367.dkr.ecr.eu-north-1.amazonaws.com/$JOB_NAME:$BUILD_NUMBER"
