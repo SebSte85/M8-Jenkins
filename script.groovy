@@ -14,8 +14,8 @@ def buildImage() {
         sh "aws --version"
         sh "aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 681800194367.dkr.ecr.eu-north-1.amazonaws.com"
         sh "docker build -t $JOB_NAME:$BUILD_NUMBER ."
-        sh "docker tag $JOB_NAME:$BUILD_NUMBER public.ecr.aws/v8z9z5a4/new-app:$BUILD_NUMBER"
-        sh "docker push public.ecr.aws/v8z9z5a4/new-app:$BUILD_NUMBER"
+        sh "docker tag $JOB_NAME:$BUILD_NUMBER 681800194367.dkr.ecr.eu-north-1.amazonaws.com/$JOB_NAME:$BUILD_NUMBER"
+        sh "docker push 681800194367.dkr.ecr.eu-north-1.amazonaws.com/$JOB_NAME:$BUILD_NUMBER"
 }   
 
 def deployApp(){
