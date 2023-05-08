@@ -7,7 +7,7 @@ def buildImage() {
     echo 'Building the docker image...'
         withCredentials([aws(credentialsId: 'ec2-jenkins', accessKeyVariable:'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY', region: 'eu-north-1')]) {
         sh "aws --version"
-        sh "aws describe-instances --region eu-north-1"
+        commonHelper.logInfo("aws cli installed")
         sh "docker build -t $USER/$JOB_NAME:$BUILD_NUMBER ."
         sh "docker login -u $USER -p $PASS 681800194367.dkr.ecr.eu-north-1.amazonaws.com/new-app:$BUILD_NUMBER"
         sh "docker push $USER/$JOB_NAME:$BUILD_NUMBER"
