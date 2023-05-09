@@ -33,7 +33,7 @@ def versionUpdate(){
         sh "git branch"
         sh "git config --list"
 
-        sh "git remote set-url origin https://${USER}:${PASS}@github.com/SebSte85/M8-Jenkins.git"
+        sh "git remote set-url origin git@github.com/SebSte85/M8-Jenkins.git"
         sh "git add ."
         sh "git commit -m 'version update'"
         sh "git push origin HEAD:dockerfile"
