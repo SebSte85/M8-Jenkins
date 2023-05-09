@@ -32,5 +32,6 @@ def versionUpdate(){
         sh "git commit -m 'version update'"
         sh "git push origin HEAD:dockerfile"
 }
+}
 
 return this
