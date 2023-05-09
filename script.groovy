@@ -25,7 +25,7 @@ def deployApp(){
 def versionUpdate(){
     echo 'Updating the version...'
 
-    withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+    withCredentials([usernamePassword(credentialsId: 'GitHub_PAT', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
         sh 'git config --global user.email "sebastian.stemmer@dig-it-up.de"'
         sh 'git config --global user.name "SebSte85"'
 
@@ -33,7 +33,7 @@ def versionUpdate(){
         sh "git branch"
         sh "git config --list"
 
-        sh "git remote set-url origin https://${USER}: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@github.com/SebSte85/M8-Jenkins.git"
+        sh "git remote set-url origin https://${USER}:${PASS}@github.com/SebSte85/M8-Jenkins.git"
         sh "git add ."
         sh "git commit -m 'version update'"
         sh "git push origin HEAD:dockerfile"
