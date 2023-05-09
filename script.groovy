@@ -1,6 +1,6 @@
 def buildJar(){
     echo 'Building the application jar...'
-    sh "mvn package"
+    sh "mvn clean package"
 }
 
 def buildImage() {
@@ -14,6 +14,23 @@ def buildImage() {
 
 def deployApp(){
     echo 'Deploying the application...'
+}
+
+def versionUpdate(){
+    echo 'Updating the version...'
+
+    withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+        sh 'git config --global user.email "sebastian.stemmer@dig-it-up.de"'
+        sh 'git config --global user.name "SebSte85"'
+
+        sh "git status"
+        sh "git branch"
+        sh "git config --list"
+
+        sh "git remote set-url origin https://${USER}:${PASS}@github.com/SebSte85/M8-Jenkins.git"
+        sh "git add ."
+        sh "git commit -m 'version update'"
+        sh "git push origin HEAD:dockerfile"
 }
 
 return this
