@@ -1,3 +1,4 @@
+/* groovylint-disable CompileStatic */
 pipeline {
     agent any
 
@@ -5,46 +6,46 @@ pipeline {
         maven 'maven-3.9.1'
     }
     stages {
-        stage("init") {
+        stage('init') {
             steps {
                 script {
-                gv = load "script.groovy"
+                    gv = load 'script.groovy'
+                }
             }
         }
-        }
-        stage("increment version...") {
+        stage('increment version...') {
             steps {
                 script {
-                gv.incrementVersion()
+                    gv.incrementVersion()
+                }
             }
-        }
         }
         stage('build jar...') {
             steps {
                 script {
-                gv.buildJar()
-                }
-                }
-            }
-        stage('build image...') {
-            steps {
-                script { 
-                gv.buildImage()
-                }
-            }
-        }     
-        stage('deploy...') {
-            steps {
-                script {
-                gv.deployApp()
+                    gv.buildJar()
                 }
             }
         }
-        stage("commit version update...") {
+        stage('build image...') {
             steps {
                 script {
-                gv.versionUpdate()
-              }
+                    gv.buildImage()
+                }
+            }
+        }
+        stage('deploy...') {
+            steps {
+                script {
+                    gv.deployApp()
+                }
+            }
+        }
+        stage('commit version update...') {
+            steps {
+                script {
+                    gv.versionUpdate()
+                }
             }
         }
     }

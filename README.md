@@ -13,9 +13,9 @@ OR if having a problem with the linux versions
 -> docker run -p 8080:8080 -p 50000:50000 -d -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
 -> docker exec -it -u0 <container id> bash
 -> curl https://get.docker.com > dockerinstall && chmod 777 dockerinstall && ./dockerinstall
--> chmod +x docjer.sock
+-> chmod +x docker.sock
 -> chgrp jenkins docker.sock
--> chmod jenkins docker.sock
+-> chown jenkins docker.sock
 
 4)Install aws cli on jenkins image
 -> curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
